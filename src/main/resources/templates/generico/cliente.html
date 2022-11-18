@@ -1,0 +1,40 @@
+<div th:replace="compartilhado/header">...</div>
+
+<section class="home-section">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/clientes/novo" class="btn btn-primary" style="margin-right: 20px;">Cadastrar</a>
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Clientes</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr align="center">
+                            <th>NOME</th>
+                            <th>ENDEREÇO</th>
+                            <th>CPF</th>
+                            <th colspan="2">AÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr th:each="cliente: ${clientes}">
+                            <td th:text="${cliente.nome}"></td>
+                            <td th:text="${cliente.endereco}"></td>
+                            <td th:text="${cliente.cpf}"></td>
+                            <th><a th:href="@{'/clientes/' + ${cliente.id_cliente}}" class="btn btn-warning">Alterar
+                            </th>
+                            <th><a href="#"
+                                    th:onclick="'if(confirm(\'Confirmar Inativação?\')) {window.location.href = \'' + @{/clientes/{id_cliente}(id_cliente=${cliente.id_cliente})} + '/inativar\'}'"
+                                    class="btn btn-danger">Inativar</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="compartilhado/footer"></div>

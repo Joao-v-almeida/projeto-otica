@@ -1,0 +1,40 @@
+<div th:replace="compartilhado/header">...</div>
+
+  <section class="home-section">
+
+    <!-- Page Heading -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/funcionarios/novo" class="btn btn-primary" style="margin-right: 20px;">Cadastrar</a>
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Funcionários</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr align="center">
+                            <th>NOME</th>
+                            <th>EMAIL</th>
+                            <th>CPF</th>
+                            <th colspan="2">AÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr th:each="funcionario : ${funcionarios}">
+                            <td th:text="${funcionario.nome}"></td>
+                            <td th:text="${funcionario.email}"></td>
+                            <td th:text="${funcionario.cpf}"></td>
+                            <td><a th:href="@{'/funcionarios/' + ${funcionario.id_func}}" class="btn btn-warning">Alterar</td>
+                            <td><a href="#" th:onclick="'if(confirm(\'Confirmar Inativação?\')) {window.location.href = \'' + @{/funcionarios/{id_func}(id_func=${funcionario.id_func})} + '/inativar\'}'" class="btn btn-danger">Inativar</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </section>
+
+<div th:replace="compartilhado/footer"></div>
+

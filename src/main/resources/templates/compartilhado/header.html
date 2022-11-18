@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Menu Principal</title>
+  <link href="/css/sb-admin-2.css" rel="stylesheet">
+  <link href="/css/login.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/principal">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">ÓTICA NEW LOOK</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="/principal">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Menu | Usuário: <span th:text="${nome}"></span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="/funcionarios">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Funcionário</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Cliente</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/fornecedores">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Fornecedor</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/produtos">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Produto</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/receitas">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Receita</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/ordemServico">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Ordem de Serviço</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/vendas">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Venda</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Contas a Receber</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Relatório de Vendas</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <li class="nav-item">
+          <a class="nav-link" href="/sair">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Sair</span></a>
+        </li>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
