@@ -5,10 +5,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.oticanewlook.oticanewlook.dtos.FornecedorDto;
 import br.com.oticanewlook.oticanewlook.model.CidadeModel;
@@ -64,7 +63,9 @@ public class FornecedorController {
 
     @PostMapping("/fornecedores/criar")
     public String criar(FornecedorModel fornecedor, @Valid FornecedorDto fornecedorDto, BindingResult result,
-            Model model) {
+            Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         List<CidadeModel> cidades = cidadeService.findAll();
         model.addAttribute("cidades", cidades);
@@ -117,7 +118,9 @@ public class FornecedorController {
 
     @PostMapping("/fornecedores/{id_forne}/atualizar")
     public String atualizar(@PathVariable int id_forne, FornecedorModel fornecedor, @Valid FornecedorDto fornecedorDto,
-            BindingResult result, Model model) {
+            BindingResult result, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         if (!fornecedorService.existsById(id_forne)) {
             return "redirect:/clientes";
@@ -137,7 +140,7 @@ public class FornecedorController {
                 br = error.getDefaultMessage() + " | ";
             }
 
-            model.addAttribute("erro", br + " | ");
+            redirectAttributes.addFlashAttribute("erro", br);
             return "redirect:/fornecedores/{id_forne}";
         }
 

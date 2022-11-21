@@ -1,9 +1,12 @@
 package br.com.oticanewlook.oticanewlook.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +18,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import br.com.oticanewlook.oticanewlook.dtos.FuncionarioDto;
 import br.com.oticanewlook.oticanewlook.model.CidadeModel;
 import br.com.oticanewlook.oticanewlook.model.FuncionarioModel;
 import br.com.oticanewlook.oticanewlook.model.TipoFuncionarioModel;
 import br.com.oticanewlook.oticanewlook.services.CidadeService;
+import br.com.oticanewlook.oticanewlook.services.CookieService;
 import br.com.oticanewlook.oticanewlook.services.FuncionarioService;
 import br.com.oticanewlook.oticanewlook.services.TipoFuncionarioService;
 
@@ -38,16 +44,19 @@ public class FuncionarioController {
 
     // TELA PRINCIPAL
     @GetMapping("/funcionarios")
-    public String funcionarios(Model model) {
+    public String funcionarios(Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
         List<FuncionarioModel> funcionarios = funcionarioService.findlAllAtivo();
         model.addAttribute("funcionarios", funcionarios);
 
         return "generico/funcionario";
     }
 
-    // PROCESSO NOVO FUNCIONÁRIO
     @GetMapping("/funcionarios/novo")
-    public String novo(Model model) {
+    public String novo(Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         List<TipoFuncionarioModel> tipo_funcionarios = tipoFuncionarioService.findAll();
         List<CidadeModel> cidades = cidadeService.findAll();
@@ -58,7 +67,9 @@ public class FuncionarioController {
 
     @PostMapping("/funcionarios/criar")
     public String criar(FuncionarioModel funcionario, @Valid FuncionarioDto funcionarioDto, BindingResult result,
-            Model model) {
+            Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         List<TipoFuncionarioModel> tipo_funcionarios = tipoFuncionarioService.findAll();
         List<CidadeModel> cidades = cidadeService.findAll();
@@ -98,10 +109,11 @@ public class FuncionarioController {
         return "redirect:/funcionarios";
     }
 
-    // PROCESSO ALTERAÇÃO DE FUNCIONÁRIO
 
     @GetMapping("/funcionarios/{id_func}")
-    public String buscar(@PathVariable int id_func, Model model) {
+    public String buscar(@PathVariable int id_func, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
         Optional<FuncionarioModel> funcionario = funcionarioService.findById(id_func);
 
         List<TipoFuncionarioModel> tipo_funcionarios = tipoFuncionarioService.findAll();
@@ -121,7 +133,9 @@ public class FuncionarioController {
     @PostMapping("/funcionarios/{id_func}/atualizar")
     public String atualizar(@PathVariable int id_func, FuncionarioModel funcionario,
             @Valid FuncionarioDto funcionarioDto, BindingResult result,
-            Model model) {
+            Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         if (!funcionarioService.existsById(id_func)) {
             return "redirect:/funcionarios";
@@ -140,7 +154,7 @@ public class FuncionarioController {
                 br = error.getDefaultMessage() + " | ";
             }
 
-            model.addAttribute("erro", " | " + br + " | ");
+            redirectAttributes.addFlashAttribute("erro", br);
             return "redirect:/funcionarios/{id_func}";
 
         }

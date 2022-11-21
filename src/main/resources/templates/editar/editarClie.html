@@ -9,6 +9,10 @@
   label{
     color: #000;
   }
+  .alert{
+        text-align: center;
+        margin-top: 12px;
+    }
 </style>
 
 <div class="container-fluid">
@@ -53,7 +57,7 @@
         <div class="form-group">
           <label for="id_cidade">Cidade: </label>
           <select class="form-control" name="id_cidade" id="id_cidade">
-            <option th:each="cidade : ${cidades}" th:text="${cidade.nome}" th:value="${cidade.id_cidade}"></option>
+            <option th:each="cidade : ${cidades}" th:text="${cidade.nome}" th:value="${cidade.id_cidade}" th:selected="${{cliente.id_cidade == cidade.id_cidade}}"></option>
           </select>
 
         </div>

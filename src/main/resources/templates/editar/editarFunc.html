@@ -9,6 +9,10 @@
   label{
     color: #000;
   }
+  .alert{
+        text-align: center;
+        margin-top: 12px;
+    }
 </style>
 
 <div class="container-fluid">
@@ -41,7 +45,7 @@
         <label for="id_tipo_func">Tipo Funcionário: </label>
         <select class="form-control" name="id_tipo_func" id="id_tipo_func">
           <option th:each="tipo_funcionario : ${tipo_funcionarios}" th:text="${tipo_funcionario.nome}"
-            th:value="${tipo_funcionario.id_tipo_func}"></option>
+            th:value="${tipo_funcionario.id_tipo_func}" th:selected="${{tipo_funcionario.id_tipo_func == funcionario.id_tipo_func}}"></option>
         </select>
 
         <div class="form-group">
@@ -65,7 +69,7 @@
         <div class="form-group">
           <label for="id_cidade">Cidade: </label>
           <select class="form-control" name="id_cidade" id="id_cidade">
-            <option th:each="cidade : ${cidades}" th:text="${cidade.nome}" th:value="${cidade.id_cidade}"></option>
+            <option th:each="cidade : ${cidades}" th:text="${cidade.nome}" th:value="${cidade.id_cidade}" th:selected="${{cidade.id_cidade == funcionario.id_cidade}}"></option>
           </select>
 
         </div>

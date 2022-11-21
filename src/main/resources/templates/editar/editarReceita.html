@@ -1,0 +1,209 @@
+<div th:replace="compartilhado/header">...</div>
+
+<style>
+    input::placeholder {
+        font-size: 14px;
+        color: #8d8b8b;
+        font-style: italic;
+    }
+
+    label {
+        color: #000;
+    }
+
+    .panel-heading {
+        color: #EAB317;
+    }
+
+    .alert{
+        text-align: center;
+        margin-top: 12px;
+    }
+</style>
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4" style="padding: 30px;">
+        <form method="POST" th:action="@{'/receitas/' + ${receita?.id_receita} + '/atualizar'}"
+            onsubmit="return confirm('Confirmar Alteração?')">
+
+            <h1 class="h3 mb-2 text-gray-800" style="text-align: center;">Alterar Receita</h1>
+
+            <div class="container">
+                <div class="panel-group">
+                    <div class="panel panel-primary" style="margin-bottom: 20px;">
+                        <div class="panel-heading">DADOS</div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cliente">Cliente</label>
+                                    <select class="form-control" name="id_cliente" id="id_cliente">
+                                        <option th:each="cliente : ${clientes}" th:value="${cliente.id_cliente}"
+                                            th:text="${cliente.nome}"
+                                            th:selected="${{cliente.id_cliente == receita.id_cliente}}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="medico">Médico</label>
+                                    <input type="text" class="form-control" id="medico" name="medico"
+                                        th:value="${receita?.medico}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary" style="margin-bottom: 20px;">
+                        <div class="panel-heading">LONGE</div>
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_esf_od">Longe-Esf-OD</label>
+                                    <input type="text" class="form-control" id="longe_esf_od" name="longe_esf_od"
+                                        th:value="${receita?.longe_esf_od}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_cil_od">Longe-Cil-OD</label>
+                                    <input type="text" class="form-control" id="longe_cil_od" name="longe_cil_od"
+                                        th:value="${receita?.longe_cil_od}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_eixo_od">Longe-Eixo-OD</label>
+                                    <input type="text" class="form-control" id="longe_eixo_od" name="longe_eixo_od"
+                                        th:value="${receita?.longe_eixo_od}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_dnp_od">Longe-Dnp-OD</label>
+                                    <input type="text" class="form-control" id="longe_dnp_od" name="longe_dnp_od"
+                                        th:value="${receita?.longe_dnp_od}">
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_esf_oe">Longe-Esf-OE</label>
+                                    <input type="text" class="form-control" id="longe_esf_oe" name="longe_esf_oe"
+                                        th:value="${receita?.longe_esf_oe}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_cil_oe">Longe-Cil-OE</label>
+                                    <input type="text" class="form-control" id="longe_cil_oe" name="longe_cil_oe"
+                                        th:value="${receita?.longe_cil_oe}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_eixo_oe">Longe-Eixo-OE</label>
+                                    <input type="text" class="form-control" id="longe_eixo_oe" name="longe_eixo_oe"
+                                        th:value="${receita?.longe_eixo_oe}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="longe_dnp_oe">Longe-Dnp-OE</label>
+                                    <input type="text" class="form-control" id="longe_dnp_oe" name="longe_dnp_oe"
+                                        th:value="${receita?.longe_dnp_oe}">
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary" style="margin-bottom: 20px;">
+                        <div class="panel-heading">PERTO</div>
+                        <div class="panel-body">
+
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_esf_od">Perto-Esf-OD</label>
+                                    <input type="text" class="form-control" id="perto_esf_od" name="perto_esf_od"
+                                        th:value="${receita?.perto_esf_od}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_cil_od">Perto-Cil-OD</label>
+                                    <input type="text" class="form-control" id="perto_cil_od" name="perto_cil_od"
+                                        th:value="${receita?.perto_cil_od}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_eixo_od">Perto-Eixo-OD</label>
+                                    <input type="text" class="form-control" id="perto_eixo_od" name="perto_eixo_od"
+                                        th:value="${receita?.perto_eixo_od}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_dnp_od">Perto-Dnp-OD</label>
+                                    <input type="text" class="form-control" id="perto_dnp_od" name="perto_dnp_od"
+                                        th:value="${receita?.perto_dnp_od}">
+                                </div>
+
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_esf_oe">Perto-Esf-OE</label>
+                                    <input type="text" class="form-control" id="perto_esf_oe" name="perto_esf_oe"
+                                        th:value="${receita?.perto_esf_oe}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_cil_oe">Perto-Cil-OE</label>
+                                    <input type="text" class="form-control" id="perto_cil_oe" name="perto_cil_oe"
+                                        th:value="${receita?.perto_cil_oe}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_eixo_oe">Perto-Eixo-OE</label>
+                                    <input type="text" class="form-control" id="perto_eixo_oe" name="perto_eixo_oe"
+                                        th:value="${receita?.perto_eixo_oe}">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label for="perto_dnp_oe">Perto-Dnp-OE</label>
+                                    <input type="text" class="form-control" id="perto_dnp_oe" name="perto_dnp_oe"
+                                        th:value="${receita?.perto_dnp_oe}">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary" style="margin-bottom: 20px;">
+                        <div class="panel-body">
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="adicao">Adição</label>
+                                    <input type="text" class="form-control" id="adicao" name="adicao"
+                                        th:value="${receita?.adicao}">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="altura">Altura</label>
+                                    <input type="text" class="form-control" id="altura" name="altura"
+                                        th:value="${receita?.altura}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="${msg != null}" th:text="${msg}" class="alert alert-danger" role="alert"></div>
+                <button type="submit" class="btn btn-primary">Alterar</button>
+                <a href="/receitas"><button type="button" class="btn btn-danger">Cancelar</button></a>
+                <div th:if="${erro != null}" th:text="${erro}" class="alert alert-danger" role="alert"></div>
+
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- /.container-fluid -->
+<div th:replace="compartilhado/footer"></div>

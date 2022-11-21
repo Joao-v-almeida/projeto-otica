@@ -1,8 +1,10 @@
 package br.com.oticanewlook.oticanewlook.controller;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import br.com.oticanewlook.oticanewlook.dtos.ClienteDto;
 import br.com.oticanewlook.oticanewlook.model.CidadeModel;
 import br.com.oticanewlook.oticanewlook.model.ClienteModel;
 import br.com.oticanewlook.oticanewlook.services.CidadeService;
 import br.com.oticanewlook.oticanewlook.services.ClienteService;
+import br.com.oticanewlook.oticanewlook.services.CookieService;
 
 @Controller
 @RequestMapping
@@ -32,7 +37,10 @@ public class ClienteController {
 
     //TELA PRINCIPAL
      @GetMapping("/clientes")
-     public String cliente(Model model) {
+     public String cliente(Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
+
          List<ClienteModel> clientes = clienteService.findlAllAtivo();
          model.addAttribute("clientes", clientes);
          return "generico/cliente";
@@ -49,7 +57,9 @@ public class ClienteController {
     }
 
     @PostMapping("/clientes/criar")
-    public String criar(ClienteModel cliente, @Valid ClienteDto clienteDto, BindingResult result, Model model) {
+    public String criar(ClienteModel cliente, @Valid ClienteDto clienteDto, BindingResult result, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         List<CidadeModel> cidades = cidadeService.findAll();
         model.addAttribute("cidades", cidades);
@@ -83,7 +93,9 @@ public class ClienteController {
     }
     
     @GetMapping("/clientes/{id_cliente}")
-    public String buscar(@PathVariable int id_cliente, Model model) {
+    public String buscar(@PathVariable int id_cliente, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         Optional<ClienteModel> cliente = clienteService.findById(id_cliente);
         List<CidadeModel> cidades = cidadeService.findAll();
@@ -100,7 +112,9 @@ public class ClienteController {
     
     @PostMapping("/clientes/{id_cliente}/atualizar")
     public String atualizar(@PathVariable int id_cliente, ClienteModel cliente, @Valid ClienteDto clienteDto,
-            BindingResult result, Model model) {
+            BindingResult result, Model model,HttpServletRequest request, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException {
+
+        model.addAttribute("nome", CookieService.getCookie(request, "funcionarioNome"));
 
         if (!clienteService.existsById(id_cliente)) {
             return "redirect:/clientes";
@@ -117,10 +131,10 @@ public class ClienteController {
             var br = "";
             List<FieldError> e = result.getFieldErrors();
             for (FieldError error : e) {
-                br = error.getDefaultMessage() + " | ";
+                br = " * " + error.getDefaultMessage() + " * ";
             }
 
-            model.addAttribute("erro", br + " | ");
+            redirectAttributes.addFlashAttribute("erro", br);
             return "redirect:/clientes/{id_cliente}";
         }
 
