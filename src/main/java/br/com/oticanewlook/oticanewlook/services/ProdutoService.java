@@ -1,5 +1,6 @@
 package br.com.oticanewlook.oticanewlook.services;
 
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ProdutoService {
         produtoRepository.delete(produtoModel);
     }
 
-    public Object findAll() {
+    public List<ProdutoModel> findAll() {
         return produtoRepository.findAll();
     }
 

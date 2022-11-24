@@ -22,7 +22,7 @@ public class ProdutoModel {
     private String descricao;
 
     @Column
-    private String outros;
+    private String tipo_produto;
 
     @Column
     private double preco_custo;
@@ -39,6 +39,14 @@ public class ProdutoModel {
     @Column
     private LocalDateTime data_cadastro;
 
+    public String getTipo_produto() {
+        return tipo_produto;
+    }
+
+    public void setTipo_produto(String tipo_produto) {
+        this.tipo_produto = tipo_produto;
+    }
+    
     public int getId_produto() {
         return id_produto;
     }
@@ -69,14 +77,6 @@ public class ProdutoModel {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getOutros() {
-        return outros;
-    }
-
-    public void setOutros(String outros) {
-        this.outros = outros;
     }
 
     public int getEstoque() {

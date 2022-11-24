@@ -11,5 +11,7 @@ public interface ReceitaRepository extends JpaRepository<ReceitaModel, Integer> 
 
     @Query(value = "SELECT *, c.nome nomeCliente FROM receita r INNER JOIN cliente c WHERE r.id_cliente = c.id_cliente", nativeQuery= true)
     List<ReceitaModel> findInnerCliente();
+
+    boolean existsById(int id_receita);
     
 }
