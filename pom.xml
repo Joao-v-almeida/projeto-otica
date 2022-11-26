@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.oticanewlook</groupId>
 	<artifactId>oticanewlook</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>oticanewlook</name>
 	<description>Software Ótica New Look Assaí</description>
 	<properties>
