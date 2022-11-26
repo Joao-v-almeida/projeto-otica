@@ -14,6 +14,6 @@ public interface ContasReceberRespository extends JpaRepository<ContasReceberMod
     void rebeberConta(@Param("id_contas_receb") int id_contas_receb, @Param("id_funcionario") int id_funcionario);
 
     @Procedure
-    @Query(value = "CALL rebeberConta(:id_contas_receb, :id_funcionario);", nativeQuery = true)
+    @Query(value = "CALL cancelarRecebimento(:id_contas_receb, :id_funcionario);", nativeQuery = true)
     void cancelarRecebimento(@Param("id_contas_receb") int id_contas_receb, @Param("id_funcionario") int id_funcionario);
 }

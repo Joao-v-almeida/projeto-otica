@@ -31,15 +31,15 @@
                             <td th:text="${conta.situacao}"></td>
                             <td th:text="${conta.data_venci}"></td>
 
-                            <th th:if="${conta.situacao != 'PAGO'}" ><a th:onclick="'if(confirm(\'Confirmar Recebimento?\')) {window.location.href = \'' + @{/contasReceber/{id_contas_receb}(id_contas_receb=${conta.id_contas_receb})} + '/receber\'}'"
+                            <th th:if="${conta.situacao != 'PAGO' AND conta.situacao != 'CANCELADO'}" ><a th:onclick="'if(confirm(\'Confirmar Recebimento?\')) {window.location.href = \'' + @{/contasReceber/{id_contas_receb}(id_contas_receb=${conta.id_contas_receb})} + '/receber\'}'"
                                     class="btn btn-success">Receber</th>
                             
-                            <th th:if="${conta.situacao == 'PAGO'}"><a class="btn btn-success disabled">Receber</th>
+                            <th th:if="${conta.situacao == 'PAGO' or conta.situacao == 'CANCELADO'}"><a class="btn btn-success disabled">Receber</th>
 
-                            <th th:if="${conta.num_parc_paga == 0}"><a href="#"
+                            <th th:if="${conta.num_parc_paga == 0 and conta.situacao != 'CANCELADO'}" ><a href="#"
                                     th:onclick="'if(confirm(\'Confirmar Cancelamento?\')) {window.location.href = \'' + @{/contasReceber/{id_contas_receb}(id_contas_receb=${conta.id_contas_receb})} + '/cancelar\'}'"
                                     class="btn btn-danger">Cancelar</th>
-                            <th th:if="${conta.num_parc_paga != 0}"><a class="btn btn-danger disabled">Cancelar</th>
+                            <th th:if="${conta.num_parc_paga != 0 or conta.situacao == 'CANCELADO'}"><a class="btn btn-danger disabled">Cancelar</th>
 
                             
                         </tr>

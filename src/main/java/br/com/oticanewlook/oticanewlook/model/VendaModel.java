@@ -25,6 +25,8 @@ public class VendaModel {
     private ReceitaModel receita;
     private int id_receita;
 
+
+
     //GET E SET
     public int getId_venda() {
         return id_venda;
