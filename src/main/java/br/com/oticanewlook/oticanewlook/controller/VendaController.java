@@ -18,7 +18,9 @@ import br.com.oticanewlook.oticanewlook.dtos.VendaDto;
 import br.com.oticanewlook.oticanewlook.model.ProdutoModel;
 import br.com.oticanewlook.oticanewlook.model.ReceitaModel;
 import br.com.oticanewlook.oticanewlook.model.VendaModel;
+import br.com.oticanewlook.oticanewlook.repositories.OrdemServicoRepository;
 import br.com.oticanewlook.oticanewlook.services.CookieService;
+import br.com.oticanewlook.oticanewlook.services.OrdemServicoService;
 import br.com.oticanewlook.oticanewlook.services.ProdutoService;
 import br.com.oticanewlook.oticanewlook.services.ReceitaService;
 import br.com.oticanewlook.oticanewlook.services.VendaService;
@@ -35,6 +37,9 @@ public class VendaController {
 
     @Autowired
     private ReceitaService receitaService;
+
+    @Autowired
+    private OrdemServicoService ordemServicoService;
 
 
     @GetMapping("/vendas")
@@ -83,7 +88,7 @@ public class VendaController {
         model.addAttribute("produtos", produtos);
 
         int quantidade, num_os, numero_parcelas, id_func;
-        double desconto;
+        double desconto, valor_total;
         var msgErro = "";
         boolean erro = false;
 
@@ -97,7 +102,18 @@ public class VendaController {
             num_os = Integer.parseInt(vendaDto.getNum_os());
             numero_parcelas = Integer.parseInt(vendaDto.getNum_parc_total());
             id_func = Integer.parseInt(CookieService.getCookie(request, "funcionarioID"));
+            valor_total = produtoModel.getPreco_venda() * quantidade;
 
+            if (vendaDto.getId_receita() == 0) {
+                erro = true;
+                msgErro = "CONFLITO: Campo Receita não pode estar vazio.";
+            }
+            
+            if (vendaDto.getId_produto() == 0) {
+                erro = true;
+                msgErro = "CONFLITO: Campo Produto não pode estar vazio.";
+            }
+  
             if (vendaDto.getDesconto().equals("")) {
                 vendaDto.setDesconto("0");
             }
@@ -112,7 +128,7 @@ public class VendaController {
                 }
             }
 
-            if (produtoModel.getEstoque() < quantidade
+            if (quantidade > produtoModel.getEstoque()
                     & !produtoModel.getTipo_produto().equals("LENTES")) {
                 erro = true;
                 msgErro = "CONFLITO: O produto selecionado possui somente: " + produtoModel.getEstoque()
@@ -124,7 +140,7 @@ public class VendaController {
                 msgErro = "CONFLITO: Campo desconto não pode ser menor que zero.";
             }
 
-            if (desconto > produtoModel.getPreco_venda() * quantidade) {
+            if (desconto > valor_total) {
                 erro = true;
                 msgErro = "CONFLITO: O Desconto não pode ser maior que o valor total.";
             }
@@ -132,6 +148,11 @@ public class VendaController {
             if (num_os <= 0) {
                 erro = true;
                 msgErro = "CONFLITO: Campo Número O.S não pode ser menor ou igual a zero.";
+            }
+
+            if (ordemServicoService.existsByNumero(num_os)) {
+                erro = true;
+                msgErro = "CONFLITO: O número da O.S já existe.";
             }
 
             var vendaModel = new VendaModel();
@@ -152,8 +173,7 @@ public class VendaController {
                 vendaService.registrar_dependentes_venda(desconto, vendaModel.getId_receita(), total_desc, valor,
                         produtoModel.getId_produto(), quantidade, numero_parcelas, num_os, id_func);
                     }
-            
-            
+              
 
         } catch (NumberFormatException e) {
             erro = true;

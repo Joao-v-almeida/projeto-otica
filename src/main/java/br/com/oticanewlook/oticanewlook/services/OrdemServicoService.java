@@ -19,4 +19,8 @@ public class OrdemServicoService {
     public List<OrdemServicoModel> findAll() {
         return ordemServicoRepository.findAll();
     }
+
+    public boolean existsByNumero(int num_os) {
+        return ordemServicoRepository.existsByNumero(num_os);
+    }
 }
