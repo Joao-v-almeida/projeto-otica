@@ -21,6 +21,7 @@
                         <tr th:each="movimentacao: ${movimentacoes}">
                             <td th:text="${movimentacao.contas.recebimento.venda.receita.cliente.nome}"></td>
                             <td th:text="${movimentacao.valor}"></td>
+                            <td th:text="${movimentacao.data_movi}"></td>
                             <td th:text="${movimentacao.funcionario.nome}"></td>
                     </tbody>
                 </table>
