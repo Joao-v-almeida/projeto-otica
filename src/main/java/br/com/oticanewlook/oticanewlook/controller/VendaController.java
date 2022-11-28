@@ -103,7 +103,7 @@ public class VendaController {
             id_func = Integer.parseInt(CookieService.getCookie(request, "funcionarioID"));
             valor_total = produtoModel.getPreco_venda() * quantidade;
 
-            /*if (vendaDto.getId_receita() == 0) {
+            if (vendaDto.getId_receita() == 0) {
                 erro = true;
                 msgErro = "CONFLITO: Campo Receita não pode estar vazio.";
             }
@@ -111,7 +111,7 @@ public class VendaController {
             if (vendaDto.getId_produto() == 0) {
                 erro = true;
                 msgErro = "CONFLITO: Campo Produto não pode estar vazio.";
-            }*/
+            }
   
             if (vendaDto.getDesconto().equals("")) {
                 vendaDto.setDesconto("0");
@@ -149,7 +149,7 @@ public class VendaController {
                 msgErro = "CONFLITO: Campo Número O.S não pode ser menor ou igual a zero.";
             }
 
-            if (ordemServicoService.existsByNumero(num_os)) {
+            if (ordemServicoService.existsByNum_os(num_os)) {
                 erro = true;
                 msgErro = "CONFLITO: O número da O.S já existe.";
             }

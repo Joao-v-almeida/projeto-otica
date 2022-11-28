@@ -1,9 +1,7 @@
 package br.com.oticanewlook.oticanewlook.services;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import br.com.oticanewlook.oticanewlook.model.OrdemServicoModel;
 import br.com.oticanewlook.oticanewlook.repositories.OrdemServicoRepository;
 
@@ -20,7 +18,7 @@ public class OrdemServicoService {
         return ordemServicoRepository.findAll();
     }
 
-    public boolean existsByNumero(int num_os) {
-        return ordemServicoRepository.existsByNumero(num_os);
+    public boolean existsByNum_os(int num_os) {
+        return ordemServicoRepository.existsByNum_os(num_os);
     }
 }

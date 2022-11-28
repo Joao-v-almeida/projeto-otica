@@ -1,7 +1,6 @@
 package br.com.oticanewlook.oticanewlook.model;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.*;
 
 @Entity
