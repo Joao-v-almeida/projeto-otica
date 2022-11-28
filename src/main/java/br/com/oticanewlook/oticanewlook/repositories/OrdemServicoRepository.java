@@ -5,5 +5,5 @@ import br.com.oticanewlook.oticanewlook.model.OrdemServicoModel;
 
 public interface OrdemServicoRepository extends JpaRepository<OrdemServicoModel, Integer>{
 
-    boolean existsByNum_os(int num_os);
+    boolean existsBynum_os(int num_os);
 }
