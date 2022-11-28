@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.oticanewlook.oticanewlook.dtos.VendaDto;
-import br.com.oticanewlook.oticanewlook.model.OrdemServicoModel;
 import br.com.oticanewlook.oticanewlook.model.ProdutoModel;
 import br.com.oticanewlook.oticanewlook.model.ReceitaModel;
 import br.com.oticanewlook.oticanewlook.model.VendaModel;
