@@ -35,7 +35,6 @@ public class ClienteController {
     @Autowired
     private CidadeService cidadeService;
 
-    //TELA PRINCIPAL
      @GetMapping("/clientes")
      public String cliente(Model model, HttpServletRequest request) throws UnsupportedEncodingException {
 
@@ -46,7 +45,6 @@ public class ClienteController {
          return "generico/cliente";
      }
      
-     //PROCESSO NOVO CLIENTE
     @GetMapping("/clientes/novo")
     public String novo(Model model) {
 

@@ -1,0 +1,32 @@
+<div th:replace="compartilhado/header">...</div>
+
+<section class="home-section">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Movimentações (ENTRADAS)</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr align="center">
+                            <th>CLIENTE</th>
+                            <th>VALOR</th>
+                            <th>FUNCIONÁRIO</th>
+                        </tr>
+                    </thead>
+                    <tbody align="center">
+                        <tr th:each="movimentacao: ${movimentacoes}">
+                            <td th:text="${movimentacao.contas.recebimento.venda.receita.cliente.nome}"></td>
+                            <td th:text="${movimentacao.valor}"></td>
+                            <td th:text="${movimentacao.funcionario.nome}"></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="compartilhado/footer"></div>
