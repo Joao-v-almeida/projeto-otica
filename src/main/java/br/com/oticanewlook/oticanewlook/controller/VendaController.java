@@ -149,7 +149,7 @@ public class VendaController {
                 msgErro = "CONFLITO: Campo Número O.S não pode ser menor ou igual a zero.";
             }
 
-            if (ordemServicoService.existsBynum_os(num_os)) {
+            if (ordemServicoService.existsByNumos(num_os)) {
                 erro = true;
                 msgErro = "CONFLITO: O número da O.S já existe.";
             }
