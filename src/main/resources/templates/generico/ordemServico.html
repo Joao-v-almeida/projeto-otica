@@ -23,12 +23,12 @@
                     </thead>
                     <tbody align="center">
                         <tr th:each="ordemServico: ${ordemServicos}">
-                            <td th:text="${ordemServico.num_os}"></td>
+                            <td th:text="${ordemServico.numOs}"></td>
                             <td th:text="${ordemServico.situacao}"></td>
                             <td th:text="${ordemServico.venda.receita.cliente.nome}"></td>
-                            <td th:text="${ordemServico.valor_total}"></td>
+                            <td th:text="${ordemServico.valorTotal}"></td>
                             <td th:text="${ordemServico.funcionario.nome}"></td>
-                            <td th:text="${ordemServico.data_cadastro}"></td>
+                            <td th:text="${ordemServico.dataCadastro}"></td>
                         </tr>
                     </tbody>
                 </table>
