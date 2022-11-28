@@ -18,7 +18,6 @@ import br.com.oticanewlook.oticanewlook.dtos.VendaDto;
 import br.com.oticanewlook.oticanewlook.model.ProdutoModel;
 import br.com.oticanewlook.oticanewlook.model.ReceitaModel;
 import br.com.oticanewlook.oticanewlook.model.VendaModel;
-import br.com.oticanewlook.oticanewlook.repositories.OrdemServicoRepository;
 import br.com.oticanewlook.oticanewlook.services.CookieService;
 import br.com.oticanewlook.oticanewlook.services.OrdemServicoService;
 import br.com.oticanewlook.oticanewlook.services.ProdutoService;
