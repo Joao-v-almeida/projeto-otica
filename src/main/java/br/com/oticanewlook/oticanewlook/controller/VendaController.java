@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.oticanewlook.oticanewlook.dtos.VendaDto;
+import br.com.oticanewlook.oticanewlook.model.OrdemServicoModel;
 import br.com.oticanewlook.oticanewlook.model.ProdutoModel;
 import br.com.oticanewlook.oticanewlook.model.ReceitaModel;
 import br.com.oticanewlook.oticanewlook.model.VendaModel;
@@ -149,7 +150,7 @@ public class VendaController {
                 msgErro = "CONFLITO: Campo Número O.S não pode ser menor ou igual a zero.";
             }
 
-            if (ordemServicoService.existsByNum_os(vendaDto.getNum_os())) {
+            if (ordemServicoService.findByNum_os(num_os)) {
                 erro = true;
                 msgErro = "CONFLITO: O número da O.S já existe.";
             }
