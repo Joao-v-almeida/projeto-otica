@@ -19,7 +19,7 @@ public class OrdemServicoService {
         return ordemServicoRepository.findAll();
     }
 
-    public boolean findByNum_os(int num_os) {
-        return ordemServicoRepository.findByNum_os(num_os);
+    public boolean existsByNumOs(int num_os) {
+        return ordemServicoRepository.existsByNumOs(num_os);
     }
 }

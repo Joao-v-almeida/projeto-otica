@@ -86,7 +86,7 @@ public class VendaController {
         model.addAttribute("receitas", receitas);
         model.addAttribute("produtos", produtos);
 
-        int quantidade, num_os, numero_parcelas, id_func;
+        int quantidade, numero_parcelas, id_func, num_os;
         double desconto, valor_total;
         var msgErro = "";
         boolean erro = false;
@@ -149,7 +149,7 @@ public class VendaController {
                 msgErro = "CONFLITO: Campo Número O.S não pode ser menor ou igual a zero.";
             }
 
-            if (ordemServicoService.findByNum_os(num_os)) {
+            if (ordemServicoService.existsByNumOs(num_os)) {
                 erro = true;
                 msgErro = "CONFLITO: O número da O.S já existe.";
             }

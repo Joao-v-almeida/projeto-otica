@@ -8,7 +8,5 @@ import br.com.oticanewlook.oticanewlook.model.OrdemServicoModel;
 
 public interface OrdemServicoRepository extends JpaRepository<OrdemServicoModel, Integer> {
 
-    @Query(value = "SELECT * FROM ordem_servico WHERE num_os =:num_os", nativeQuery = true)
-    boolean findByNum_os(@Param("num_os")int num_os);
-
+    boolean existsByNumOs(int numOs);
 }

@@ -11,17 +11,17 @@ public class OrdemServicoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_os;
 
-    @Column
-    private int num_os;
+    @Column(name = "num_os")
+    private int numOs;
 
-    @Column
-    private double valor_total;
+    @Column(name = "valor_total")
+    private double valorTotal;
 
     @Column
     private String situacao;
 
-    @Column
-    private LocalDateTime data_cadastro;
+    @Column(name = "data_cadastro")
+    private LocalDateTime dataCadastro;
 
     @ManyToOne 
     @JoinColumn(name = "id_venda",insertable = false,updatable = false)
@@ -36,57 +36,72 @@ public class OrdemServicoModel {
     public int getId_os() {
         return id_os;
     }
+
     public void setId_os(int id_os) {
         this.id_os = id_os;
     }
-    public int getNum_os() {
-        return num_os;
+
+    public int getNumOs() {
+        return numOs;
     }
-    public void setNum_os(int num_os) {
-        this.num_os = num_os;
+
+    public void setNumOs(int numOs) {
+        this.numOs = numOs;
     }
-    public double getValor_total() {
-        return valor_total;
+
+    public double getValorTotal() {
+        return valorTotal;
     }
-    public void setValor_total(double valor_total) {
-        this.valor_total = valor_total;
+
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
+
     public String getSituacao() {
         return situacao;
     }
+
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
-    public LocalDateTime getData_cadastro() {
-        return data_cadastro;
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
     }
-    public void setData_cadastro(LocalDateTime data_cadastro) {
-        this.data_cadastro = data_cadastro;
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
+
     public VendaModel getVenda() {
         return venda;
     }
+
     public void setVenda(VendaModel venda) {
         this.venda = venda;
     }
+
     public int getId_venda() {
         return id_venda;
     }
+
     public void setId_venda(int id_venda) {
         this.id_venda = id_venda;
     }
+
     public FuncionarioModel getFuncionario() {
         return funcionario;
     }
+
     public void setFuncionario(FuncionarioModel funcionario) {
         this.funcionario = funcionario;
     }
+
     public int getId_func() {
         return id_func;
     }
+
     public void setId_func(int id_func) {
         this.id_func = id_func;
     }
-
-    
 }
