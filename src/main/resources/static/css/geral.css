@@ -2712,6 +2712,12 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
+.alert-danger {
+  color: #78261f;
+  background-color: #fadbd8;
+  border-color: #f8ccc8;
+}
+
 .d-none {
   display: none !important;
 }
@@ -4695,6 +4701,7 @@ input[type="button"].btn-block {
 
 .text-primary {
   color: #4e73df !important;
+  font-weight: bold;
 }
 
 a.text-primary:hover, a.text-primary:focus {

@@ -24,7 +24,15 @@
                             <td th:text="${movimentacao.valor}"></td>
                             <td th:text="${movimentacao.dataMovi}"></td>
                             <td th:text="${movimentacao.funcionario.nome}"></td>
+                        </tr>
+
                     </tbody>
+                    <tfoot align="center">
+                        <tr>
+                            <th >VALOR TOTAL: </th>
+                            <th th:text="'R$ ' + ${(#aggregates.sum(movimentacoes.![valor]))}"></th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
