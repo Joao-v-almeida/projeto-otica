@@ -149,10 +149,11 @@ public class VendaController {
                 msgErro = "CONFLITO: Campo Número O.S não pode ser menor ou igual a zero.";
             }
 
+            /* Validar se O.S pode estar duplicada. Atualmente o nosso sistema faz a venda de um produto por vez, faz sentido comentar no cenario atual.
             if (ordemServicoService.existsByNumOs(num_os)) {
                 erro = true;
                 msgErro = "CONFLITO: O número da O.S já existe.";
-            }
+            }*/
 
             var vendaModel = new VendaModel();
 
