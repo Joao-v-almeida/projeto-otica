@@ -19,7 +19,6 @@ import br.com.oticanewlook.oticanewlook.model.ProdutoModel;
 import br.com.oticanewlook.oticanewlook.model.ReceitaModel;
 import br.com.oticanewlook.oticanewlook.model.VendaModel;
 import br.com.oticanewlook.oticanewlook.services.CookieService;
-import br.com.oticanewlook.oticanewlook.services.OrdemServicoService;
 import br.com.oticanewlook.oticanewlook.services.ProdutoService;
 import br.com.oticanewlook.oticanewlook.services.ReceitaService;
 import br.com.oticanewlook.oticanewlook.services.VendaService;
@@ -37,8 +36,8 @@ public class VendaController {
     @Autowired
     private ReceitaService receitaService;
 
-    @Autowired
-    private OrdemServicoService ordemServicoService;
+    /*@Autowired
+    private OrdemServicoService ordemServicoService;*/
 
 
     @GetMapping("/vendas")
