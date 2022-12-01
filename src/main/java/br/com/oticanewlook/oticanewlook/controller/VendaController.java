@@ -118,16 +118,11 @@ public class VendaController {
             desconto = Double.parseDouble(vendaDto.getDesconto().replace(',', '.'));
 
             if (quantidade <= 0) {
-                if (produtoModel.getTipo_produto().equals("LENTES")) {
-                    quantidade = 0;
-                } else {
                     erro = true;
                     msgErro = "CONFLITO: Campo quantidade não pode ser menor ou igual a zero.";
-                }
             }
-
-            if (quantidade > produtoModel.getEstoque()
-                    & !produtoModel.getTipo_produto().equals("LENTES")) {
+        
+            if (quantidade > produtoModel.getEstoque() & !produtoModel.getTipo_produto().equals("LENTES")) {
                 erro = true;
                 msgErro = "CONFLITO: O produto selecionado possui somente: " + produtoModel.getEstoque()
                         + " unidades em estoque";
