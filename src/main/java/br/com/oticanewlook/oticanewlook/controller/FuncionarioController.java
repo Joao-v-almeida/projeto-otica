@@ -1,7 +1,7 @@
 package br.com.oticanewlook.oticanewlook.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +91,7 @@ public class FuncionarioController {
         var funcionarioModel = new FuncionarioModel();
         BeanUtils.copyProperties(funcionarioDto, funcionarioModel);
         funcionarioModel.setAtivo("S");
-        funcionarioModel.setData_cadastro(LocalDateTime.now(ZoneId.of("UTC")));
+        funcionarioModel.setData_cadastro(LocalDate.now(ZoneId.of("UTC")));
 
         if (result.hasErrors() || erro) {
             var br = "";

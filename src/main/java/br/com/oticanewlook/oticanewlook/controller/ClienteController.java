@@ -1,6 +1,6 @@
 package br.com.oticanewlook.oticanewlook.controller;
 import java.io.UnsupportedEncodingException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +73,7 @@ public class ClienteController {
         var clienteModel = new ClienteModel();
         BeanUtils.copyProperties(clienteDto, clienteModel);
         clienteModel.setAtivo("S");
-        clienteModel.setData_cadastro(LocalDateTime.now(ZoneId.of("UTC")));
+        clienteModel.setData_cadastro(LocalDate.now(ZoneId.of("UTC")));
 
         if (result.hasErrors() || erro) {
             var br = "";

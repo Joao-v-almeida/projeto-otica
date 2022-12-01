@@ -1,6 +1,6 @@
 package br.com.oticanewlook.oticanewlook.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import javax.persistence.*;
 
 @Entity
@@ -18,7 +18,7 @@ public class MovimentacaoModel {
     private String tipoMovi;
 
     @Column(name = "data_movi")
-    private LocalDateTime dataMovi;
+    private LocalDate dataMovi;
     
     @ManyToOne 
     @JoinColumn(name = "id_contas_receb",insertable = false,updatable = false)
@@ -47,10 +47,10 @@ public class MovimentacaoModel {
     public void setTipoMovi(String tipoMovi) {
         this.tipoMovi = tipoMovi;
     }
-    public LocalDateTime getDataMovi() {
+    public LocalDate getDataMovi() {
         return dataMovi;
     }
-    public void setDataMovi(LocalDateTime dataMovi) {
+    public void setDataMovi(LocalDate dataMovi) {
         this.dataMovi = dataMovi;
     }
     public ContasReceberModel getContas() {

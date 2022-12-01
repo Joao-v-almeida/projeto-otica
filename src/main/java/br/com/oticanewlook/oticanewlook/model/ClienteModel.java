@@ -1,6 +1,6 @@
 package br.com.oticanewlook.oticanewlook.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import javax.persistence.*;
 
 @Entity
@@ -31,7 +31,7 @@ public class ClienteModel {
     private String ativo;
 
     @Column
-    private LocalDateTime data_cadastro;
+    private LocalDate data_cadastro;
 
     private int id_cidade;
 
@@ -92,11 +92,11 @@ public class ClienteModel {
         this.ativo = ativo;
     }
 
-    public LocalDateTime getData_cadastro() {
+    public LocalDate getData_cadastro() {
         return data_cadastro;
     }
 
-    public void setData_cadastro(LocalDateTime data_cadastro) {
+    public void setData_cadastro(LocalDate data_cadastro) {
         this.data_cadastro = data_cadastro;
     }
 
